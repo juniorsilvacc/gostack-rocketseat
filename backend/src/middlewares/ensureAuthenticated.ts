@@ -24,6 +24,7 @@ export default function ensureAuthenticated(
   // Bearer
   const [, token] = authHeader.split(' ');
 
+  // Verificar se o token é valido
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
