@@ -6,7 +6,7 @@ import {Form} from '@unform/web';
 import logoImg from '../../assets/logo.svg';
 import * as Yup from 'yup';
 
-import getValidationErros from '../../utils/getValidationErros'
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import {Container, Content, Background} from './styles';
 
@@ -19,6 +19,8 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = useCallback(async(data: object) => {
     try {
+
+      formRef.current?.setErrors({});
       
       const schema = Yup.object().shape({
         name: Yup.string().required('Nome obrigatório'),
@@ -30,9 +32,9 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-    } catch (err) {
-      console.log(err)
-      const errors = getValidationErros(err);
+    } catch (err: any) {
+      console.log(err); 
+      const errors = getValidationErrors(err)
       formRef.current?.setErrors(errors);
     }
   }, []);
