@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext } from 'react'
+import React, { useCallback, useRef } from 'react'
 import {FiLogIn, FiMail, FiLock} from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg'
 import {Form} from '@unform/web';
@@ -45,16 +45,19 @@ const SignIn: React.FC = () => {
         password: data.password,
       })
     } catch (err: any) {
-      console.log(err); 
-      const errors = getValidationErrors(err)
-      formRef.current?.setErrors(errors);
+      if(err instanceof Yup.ValidationError){
+        const errors = getValidationErrors(err)
+        formRef.current?.setErrors(errors);
+      }
+
+      //disparar um toast
+      
+      
     }
   }, [signIn]);
 
   return (
     <Container>
-      <Background/>
-      
       <Content>
        <img src={logoImg} alt="GoBarber" />
 
@@ -75,6 +78,8 @@ const SignIn: React.FC = () => {
          Criar conta
         </a>
       </Content>
+
+      <Background/>
     </Container>
   )
 }
