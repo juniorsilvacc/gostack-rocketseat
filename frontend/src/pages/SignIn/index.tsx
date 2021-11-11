@@ -2,8 +2,9 @@ import React, { useCallback, useRef } from 'react'
 import {FiLogIn, FiMail, FiLock} from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg'
 import {Form} from '@unform/web';
+import {Link} from 'react-router-dom'
 
-import {Container, Content, Background} from './styles'
+import {Container, Content, Background, AnimationContainer} from './styles'
 
 import {useAuth} from '../../hooks/auth'
 import {useToast} from '../../hooks/toast';
@@ -64,24 +65,26 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-       <img src={logoImg} alt="GoBarber" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber" />
 
-       <Form onSubmit={handleSubmit} ref={formRef}>
-         <h1>Faça o seu login</h1>
+          <Form onSubmit={handleSubmit} ref={formRef}>
+            <h1>Faça o seu login</h1>
 
-         <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-         <Input name="password" icon={FiLock} placeholder="Senha" type="password" />
+            <Input name="password" icon={FiLock} placeholder="Senha" type="password" />
 
-         <Button type="submit">Entrar</Button>
+            <Button type="submit">Entrar</Button>
 
-         <a href="forgot">Esqueci minha senha</a>
-       </Form>
+            <a href="forgot">Esqueci minha senha</a>
+          </Form>
 
-       <a href="forgot">
-         <FiLogIn/>
-         Criar conta
-        </a>
+          <Link to="/signup">
+            <FiLogIn/>
+            Criar conta
+          </Link>
+        </AnimationContainer>
       </Content>
 
       <Background/>
