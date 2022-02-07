@@ -35,9 +35,7 @@ export class AlterProviderFieldToProviderId1635018051284
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('appointments', 'AppointmentProvider');
-
     await queryRunner.dropColumn('appointments', 'provider_id');
-
     await queryRunner.addColumn(
       'appointments',
       new TableColumn({

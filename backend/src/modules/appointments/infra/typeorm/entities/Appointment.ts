@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/users/infra/typeorm/entities/User';
+import { User } from '@modules/users/infra/typeorm/entities/User';
 
 @Entity('appointments')
 class Appointment {
@@ -32,4 +32,4 @@ class Appointment {
   updated_at: Date;
 }
 
-export default Appointment;
+export { Appointment };
